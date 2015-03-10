@@ -13,6 +13,13 @@ func PrintError(msg string, err error) {
 }
 
 func ExitOnError(msg string, err error) {
-	PrintError(msg, err)
-	os.Exit(1)
+	if err != nil {
+		fmt.Println(msg, "\n")
+		fmt.Println("errors: ", err)
+		os.Exit(1)
+	}
+}
+
+func TestPrint() {
+	fmt.Println("Test function call from util")
 }

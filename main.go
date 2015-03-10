@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	//	"github.com/haridas/sdiscover/util"
+	"github.com/haridas/sdiscover/util"
 	"io/ioutil"
-	"log"
 	"os"
 )
 
@@ -23,38 +22,15 @@ func main() {
 	flag.Parse()
 
 	if *configOpt != "" {
-		file, err := ioutil.ReadFile("conf.json")
+		file, err := ioutil.ReadFile(*configOpt)
 
-		//err_msg := fmt.Printf("Error while opening the config file: %v", *configOpt)
-		//util.ExitOnError("Error while opening the file", err)
-		//fmt.Printf("read 100 bytes %d, data: %q", count, data[:100])
-		//err_msg := fmt.Printf("Error while parsing the config file: %v", *configOpt)
+		util.ExitOnError("Error while opening the file", err)
 
 		var x SConf
-		json.Unmarshal(file, &x)
-		//fmt.Printf("File data: %s\n", string(file))
-		//util.ExitOnError("Error while parsing the config file", err)
+		err = json.Unmarshal(file, &x)
+		util.ExitOnError("Error while parsing the config file", err)
+
 		fmt.Println(x)
-
-		if err != nil {
-			fmt.Println("Error while parsing the file")
-			log.Fatal(err)
-		}
-
-		//file, e := ioutil.ReadFile("test.json")
-		//if e != nil {
-		//	fmt.Printf("File error: %v\n", e)
-		//	os.Exit(1)
-		//}
-		//fmt.Printf("%s\n", string(file))
-
-		////m := new(Dispatch)
-		////var m interface{}
-		////var jsontype jsonobject
-		//var jsontype AwsConf
-		//json.Unmarshal(file, &jsontype)
-		////fmt.Printf("Results: %v\n", jsontype)
-		//fmt.Println(jsontype)
 
 	} else {
 		fmt.Println("./sdiscover -config=config.json")
