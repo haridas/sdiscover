@@ -1,7 +1,6 @@
 package store
 
 import (
-	"fmt"
 	"github.com/haridas/sdiscover/util"
 	"gopkg.in/amz.v3/aws"
 	"gopkg.in/amz.v3/s3"
@@ -81,7 +80,9 @@ func (store *S3Store) AddObject(path string, obj []byte) error {
 *
 * returns error if it fails to do so.
  */
-func (store *S3Store) AddFile(path string, file *os.File, contentType string) error {
+func (store *S3Store) AddFile(
+	path string, file *os.File, contentType string) error {
+
 	fileInof, _ := file.Stat()
 	return store.Bucket.PutReader(path, file, fileInof.Size(), contentType,
 		s3.Private)

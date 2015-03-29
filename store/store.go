@@ -20,7 +20,7 @@ type Store interface {
 	AddObject(path string, obj []byte) error
 	AddFile(path string, file *os.File, contentType string) error
 	ReadAsObject(path string) ([]byte, error)
-	ReadAsFile(path string) error
+	ReadAsFile(path string, file *os.File) error
 }
 
 /*

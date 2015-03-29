@@ -4,8 +4,9 @@ package main
 // and populate these values.
 
 type AwsConf struct {
-	AccessKey string
-	SecretKey string
+	AccessKey    string
+	SecretKey    string
+	S3BucketName string
 }
 
 type SConf struct {
