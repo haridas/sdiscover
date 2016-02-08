@@ -3,28 +3,23 @@ sdiscover
 
 A consul cluster management utility for docker and other environments.
 
-Me and Aneesh working on the service discovery issues. He need one tool which
-help him to do the DevOps job easily to deploy a SOA based app. And for me it's
-a learning process for my related SOA works using Zookeeper in Java :).
+Service discovery is the one main use case of the Consul. Consul adopts
+eventually consistent model for the cluster consistency, ie; it gives more
+importance to the availability of the cluster on network partition times. The
+Consul uses Quoram based leader election, with multi datacenter support. With
+all this features inbuilt Consul is a good pick for our service discovery
+requirement.
 
-Use case for this tool,
+But for deploying the distributed application with consul cluster is not
+a trivial task. We need a simple tool to rol eout the application with consul
+integrated well with it.
 
-We need to do the service discovery on our application which was deployed in
-docker using fleet. Since the application was already developed, so changing
-the code to achieving the service discovery is cumbersome, and at this point of
-time it's unnecessary. So we my friend found this new cluster based tool consul,
-and it fits for our needs.
+Feature set:-
 
-But we require some tool written on top of consul to manage all consul related
-operation and making all happens automatically using fleet and docker bootup
-time. We started to develop an tool which does the following things for us,
+1. Agent Auto join with AWS S3 account to sync the cluster state.
+2. Easy cluster bootstrap.
+3. Integrate this tool with your micro containers for easy deployment.
 
-- Automatically manage the consul cluster ( Servers and agents ).
-- Failover, if one consul agent or master failed. Consul doesn't have this
-  feature inbuilt at this point of time.
-- Solves the issues while working with containers ( Auto restart, networking
-  etc.)
-- Easy integration with your application and less manual setup.
 
 WIP
 
@@ -36,4 +31,3 @@ Links
 Contributers
 ============
 - Haridas N <hn@haridas.in>
-- Aneesh Kumar <me@aneesh.info>

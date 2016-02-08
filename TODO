@@ -2,19 +2,16 @@
 Requirements and Problem domain
 ===============================
 
-We are going to run this sdiscover tool under docker deployments specifically.
+We are going to run this sdiscover tool under container deployments specifically.
 
-1. We have limited number of consul master nodes are running. This script can be
-   configured to run "master" or "agent" mode.
-
-2. sdiscovery writes its host IP to the Store if it's running in the master mode.
+1. sdiscovery writes its host IP to the Store if it's running in the master mode.
    Also it won't do that if the number of masters already running was met the
    number of master node requirements.
 
-3. If master sdiscover founds that it don't need to run in the master mode, it
+2. If master sdiscover founds that it don't need to run in the master mode, it
    then switch to "agent" mode and joins the existing cluster.
 
-4. If the sdiscover runs in the "agent" mode it will only reads the master
+3. If the sdiscover runs in the "agent" mode it will only reads the master
    details from Store and joins with them to get the global discovery information.
 
 
@@ -26,13 +23,5 @@ Store Implementations details how it works with Sdiscover.
 
 3. We Store a Lock file, to serialize the store access.
 
-4. We save the list of master IPs on the Store, so all other sdiscover instances
+4. We save the list of server IPs on the Store, so all other sdiscover instances
    can read or update those information.
-
-5. Right now there is no push notification or signaling mechanism to notify
-   all agents and masters the cluster changes. They will get to know about this
-   when it fail to establish connection.
-
-6. This script has to take care complete sub processing of consul and make sure
-   it will manage the auto restart of consul if it gose down. So it can update
-   the Store with latest information.
