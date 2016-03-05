@@ -1,5 +1,16 @@
-sdiscover
-=========
+## sdiscover
+
+## DEPRECATION NOTE
+This doesn't solve the problem of consul cluster joining with the help of AWS S3
+because of its Eventual consistency behavior. We could achieve this using
+multiple AWS services, but that will complicate this tool usage. Or another
+option is hosting a our own API outside the cluster to manage the cluster join,
+that could be extra third party support. Because of these reasons no future work
+will going added to this project.
+
+
+
+## Scope
 
 A consul cluster management utility for docker and other environments.
 
